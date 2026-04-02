@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Generator</title>
+    <style>
+        body { font-family: Arial; text-align: center; }
+        .templates {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 50px;
+        }
+        .card {
+            width: 180px;
+            padding: 20px;
+            border: 2px solid #ccc;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Select Resume Template</h2>
+
+<div class="templates">
+    <div class="card" onclick="selectTemplate('t1')">Template 1</div>
+    <div class="card" onclick="selectTemplate('t2')">Template 2</div>
+    <div class="card" onclick="selectTemplate('t3')">Template 3</div>
+</div>
+
+<script>
+function selectTemplate(t) {
+    localStorage.setItem("template", t);
+
+    if (t === "t1") window.location.href = "form1.html";
+    else if (t === "t2") window.location.href = "form2.html";
+    else window.location.href = "form3.html";
+}
+</script>
+
+</body>
+</html>

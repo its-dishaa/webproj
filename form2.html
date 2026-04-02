@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Professional Resume Form</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f4f4;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        h3 {
+            background: #2c3e50;
+            color: white;
+            padding: 5px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 10px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #2c3e50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1a252f;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Professional Resume Builder</h2>
+
+    <!-- NAME + ROLE -->
+    <h3>Personal Info</h3>
+    <input id="name" placeholder="Full Name">
+    <input id="role" placeholder="Your Role (e.g. Web Developer)">
+
+    <!-- PROFILE -->
+    <h3>Profile Summary</h3>
+    <textarea id="summary" placeholder="Write your professional summary"></textarea>
+
+    <!-- PHOTO -->
+    <h3>Profile Photo</h3>
+    <input type="file" id="image" accept="image/*">
+
+    <!-- CONTACT -->
+    <h3>Contact</h3>
+    <input id="phone" placeholder="Phone">
+    <input id="email" placeholder="Email">
+
+    <!-- SKILLS -->
+    <h3>Skills</h3>
+    <input id="skills" placeholder="e.g. HTML, CSS, JavaScript">
+
+    <!-- EDUCATION -->
+    <h3>Education</h3>
+    <textarea id="education" placeholder="Your education details"></textarea>
+
+    <!-- EXPERIENCE -->
+    <h3>Experience</h3>
+    <textarea id="experience" placeholder="Your work experience"></textarea>
+
+    <!-- PROJECTS -->
+    <h3>Projects</h3>
+    <textarea id="projects" placeholder="Your projects"></textarea>
+
+    <button onclick="generate()">Generate Resume</button>
+
+</div>
+
+<script>
+function generate() {
+
+    const file = document.getElementById("image").files[0];
+    let imageURL = "";
+
+    if (file) {
+        imageURL = URL.createObjectURL(file);
+    }
+
+    const data = {
+        name: document.getElementById("name").value,
+        role: document.getElementById("role").value,
+        summary: document.getElementById("summary").value,
+
+        phone: document.getElementById("phone").value,
+        email: document.getElementById("email").value,
+
+        skills: document.getElementById("skills").value,
+        education: document.getElementById("education").value,
+        experience: document.getElementById("experience").value,
+        projects: document.getElementById("projects").value,
+
+        image: imageURL
+    };
+
+    localStorage.setItem("resumeData", JSON.stringify(data));
+    localStorage.setItem("template", "t2"); // important
+
+    window.location.href = "resume.html";
+}
+</script>
+
+</body>
+</html>

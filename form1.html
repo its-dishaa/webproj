@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Form</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        input, textarea { width: 100%; padding: 8px; margin: 5px 0; }
+        h3 { margin-top: 20px; }
+        button { padding: 10px; margin-top: 15px; }
+    </style>
+</head>
+
+<body>
+
+<h2>Enter Resume Details</h2>
+
+<!-- PERSONAL -->
+<h3>Personal Info</h3>
+<input id="name" placeholder="Full Name">
+<input id="email" placeholder="Email">
+<input id="phone" placeholder="Phone">
+<input id="address" placeholder="Address">
+
+<!-- EXPERIENCE -->
+<h3>Experience</h3>
+<input id="jobTitle" placeholder="Job Title">
+<input id="company" placeholder="Company">
+<input id="expStart" placeholder="Start Date">
+<input id="expEnd" placeholder="End Date">
+
+<!-- EDUCATION -->
+<h3>Education</h3>
+<input id="school" placeholder="School/College">
+<input id="degree" placeholder="Degree">
+<input id="field" placeholder="Field of Study">
+<input id="eduStart" placeholder="Start Date">
+<input id="eduEnd" placeholder="End Date">
+
+<!-- SKILLS -->
+<h3>Skills</h3>
+<input id="skills" placeholder="e.g. AI, Python">
+
+<!-- INTEREST -->
+<h3>Interests / Achievements</h3>
+<textarea id="interests" placeholder="Your interests and achievements"></textarea>
+
+<button onclick="generate()">Generate Resume</button>
+
+<script>
+function generate() {
+    const data = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        address: document.getElementById("address").value,
+
+        jobTitle: document.getElementById("jobTitle").value,
+        company: document.getElementById("company").value,
+        expStart: document.getElementById("expStart").value,
+        expEnd: document.getElementById("expEnd").value,
+
+        school: document.getElementById("school").value,
+        degree: document.getElementById("degree").value,
+        field: document.getElementById("field").value,
+        eduStart: document.getElementById("eduStart").value,
+        eduEnd: document.getElementById("eduEnd").value,
+
+        skills: document.getElementById("skills").value,
+        interests: document.getElementById("interests").value
+    };
+
+    localStorage.setItem("resumeData", JSON.stringify(data));
+    window.location.href = "resume.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume</title>
+
+    <style>
+        body {
+    font-family: Arial;
+    margin: 0;
+    background: #f4f4f4;
+}
+
+/* MAIN LAYOUT */
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* LEFT SIDE (Resume) */
+.left {
+    width: 70%;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.resume {
+    background: white;
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+/* RIGHT SIDE (Controls) */
+.right {
+    width: 30%;
+    background: white;
+    padding: 20px;
+    border-left: 2px solid #ddd;
+}
+
+.right label {
+    display: block;
+    margin-top: 10px;
+}
+.modern {
+    display: flex;
+    max-width: 900px;
+    margin: auto;
+    background: white;
+}
+
+/* LEFT SIDE */
+.sidebar {
+    width: 30%;
+    background: #90bbd4;
+    color: white;
+    padding: 20px;
+}
+
+.sidebar h3 {
+    background: #2ca8c2;
+    padding: 5px;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+/* PHOTO */
+.photo-box {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+/* RIGHT SIDE */
+.content {
+    width: 70%;
+    padding: 20px;
+}
+
+.content h1 {
+    color: #2ca8c2;
+}
+
+.content h3 {
+    border-bottom: 2px solid #2ca8c2;
+    margin-top: 20px;
+}
+.t2 {
+  display: flex;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.t2 .left {
+  width: 30%;
+  background: #2c3e50;
+  color: white;
+  padding: 20px;
+}
+
+.t2 .right {
+  width: 70%;
+  padding: 20px;
+}
+
+.t2 img {
+  width: 100%;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.t2 h1 {
+  color: #2c3e50;
+}
+    </style>
+</head>
+
+<body>
+    <body>
+
+<div class="container">
+
+    <!-- LEFT SIDE -->
+    <div class="left">
+        <div id="resume"></div>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="right">
+        <h3>Customize Resume</h3>
+
+        <label>Choose Color:</label>
+        <input type="color" id="colorPicker" onchange="changeColor()">
+
+        <label>Font Style:</label>
+        <select onchange="changeFont(this.value)">
+            <option value="Arial">Arial</option>
+            <option value="Poppins">Poppins</option>
+            <option value="Georgia">Georgia</option>
+        </select>
+
+        <label>Alignment:</label>
+        <select onchange="changeAlign(this.value)">
+            <option value="left">Left</option>
+            <option value="center">Center</option>
+            <option value="right">Right</option>
+        </select>
+
+        <br><br>
+        <button onclick="window.print()">Download PDF</button>
+    </div>
+
+</div>
+
+<script>
+function changeColor() {
+    const color = document.getElementById("colorPicker").value;
+    document.querySelector(".resume").style.color = color;
+}
+
+function changeFont(font) {
+    document.querySelector(".resume").style.fontFamily = font;
+}
+
+function changeAlign(align) {
+    document.querySelector(".resume").style.textAlign = align;
+}
+const data = JSON.parse(localStorage.getItem("resumeData"));
+const template = localStorage.getItem("template");
+
+let html = "";
+
+// Template 1 (Simple)
+if (template === "t1") {
+    html = `
+    <div class="resume">
+
+        <h1>${data.name}</h1>
+        <p>${data.email} | ${data.phone}</p>
+        <p>${data.address}</p>
+
+        <hr>
+
+        <h3>EMPLOYMENT HISTORY</h3>
+        <p><b>${data.jobTitle}</b> - ${data.company}</p>
+        <p>${data.expStart} - ${data.expEnd}</p>
+
+        <hr>
+
+        <h3>EDUCATION</h3>
+        <p><b>${data.school}</b></p>
+        <p>${data.degree} in ${data.field}</p>
+        <p>${data.eduStart} - ${data.eduEnd}</p>
+
+        <hr>
+
+        <h3>SKILLS</h3>
+        <p>${data.skills}</p>
+
+        <hr>
+
+        <h3>INTERESTS / ACHIEVEMENTS</h3>
+        <p>${data.interests}</p>
+
+    </div>
+    `;
+}
+
+// Template 2 (Sidebar)
+else if (template === "t2") {
+    html = `
+        <div class="resume t2">
+
+            <div class="left">
+                <img src="${data.image}" alt="Profile Image">
+
+                <h3>Contact</h3>
+                <p>${data.email}</p>
+                <p>${data.phone}</p>
+
+                <h3>Skills</h3>
+                <p>${data.skills}</p>
+
+                <h3>Education</h3>
+                <p>${data.education}</p>
+            </div>
+
+            <div class="right">
+                <h1>${data.name}</h1>
+                <h4>${data.role}</h4>
+
+                <h3>Profile</h3>
+                <p>${data.summary}</p>
+
+                <h3>Experience</h3>
+                <p>${data.experience}</p>
+
+                <h3>Projects</h3>
+                <p>${data.projects}</p>
+            </div>
+
+        </div>
+    `;
+}
+
+// Template 3 (Modern)
+// Template 3 (Modern - FIXED)
+// Template 3 (Modern FINAL)
+else if (template === "t3") {
+    html = `
+    <div class="resume modern">
+
+        <!-- LEFT SIDEBAR -->
+        <div class="sidebar">
+
+            <!-- PHOTO -->
+            <div class="photo-box">
+                <img src="https://via.placeholder.com/120" class="photo">
+            </div>
+
+            <h3>CONTACT</h3>
+            <p>${data.phone || ""}</p>
+            <p>${data.email || ""}</p>
+            <p>${data.address || ""}</p>
+
+            <h3>EDUCATION</h3>
+            <p><b>${data.degree || ""}</b></p>
+            <p>${data.college || ""}</p>
+            <p>${data.eduStart || ""} - ${data.eduEnd || ""}</p>
+
+            <h3>SKILLS</h3>
+            <p>${data.skills || ""}</p>
+
+        </div>
+
+        <!-- RIGHT CONTENT -->
+        <div class="content">
+
+            <h1>${data.name || ""}</h1>
+
+            <h3>PROFILE</h3>
+            <p>${data.profile || ""}</p>
+
+            <h3>WORK EXPERIENCE</h3>
+            <p><b>${data.jobTitle || ""}</b> - ${data.company || ""}</p>
+            <p>${data.expStart || ""} - ${data.expEnd || ""}</p>
+            <p>${data.expDesc || ""}</p>
+
+            <h3>HOBBIES</h3>
+            <p>${data.hobbies || ""}</p>
+
+        </div>
+
+    </div>
+    `;
+}
+
+document.getElementById("resume").innerHTML = html;
+</script>
+
+</body>
+</html>
