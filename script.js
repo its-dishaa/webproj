@@ -404,6 +404,7 @@ function collectFormData() {
 
   return formData;
 }
+<<<<<<< HEAD
 function buildResume() {
   const data = collectFormData(); // get all form data
   const template = localStorage.getItem("selectedTemplate") || 1;
@@ -436,6 +437,23 @@ function goToJobs() {
 }
 function goToCoverLetter() {
   window.location.href = "coverletter.html";
+=======
+
+function buildResume() {
+  const data = collectFormData();
+  let html = '';
+
+  if (appState.currentTemplate === 1) html = buildTemplateOne(data);
+  if (appState.currentTemplate === 2) html = buildTemplateTwo(data);
+  if (appState.currentTemplate === 3) html = buildTemplateThree(data);
+
+  const output = $('#resume-output');
+  if (output) output.innerHTML = html;
+
+  applyRenderStyles();
+  updateUIFromScore();
+  goTo('preview');
+>>>>>>> 69baf3a (Added Resume Generator Project Files)
 }
 
 function applyRenderStyles() {
@@ -709,6 +727,7 @@ function adjustFontSize(delta) {
   if (inner) inner.style.fontSize = `${appState.resumeSizePx}px`;
 }
 
+<<<<<<< HEAD
 function goToCV() {
   window.location.href = "cv.html";
 }
@@ -745,6 +764,8 @@ window.onload = function () {
   }
 };
 
+=======
+>>>>>>> 69baf3a (Added Resume Generator Project Files)
 // -----------------------------------------------------------------------------
 // AI helpers removed per user request
 // -----------------------------------------------------------------------------

@@ -11,7 +11,6 @@
 <!-- NAVBAR -->
 <div class="navbar">
     <div class="logo">HireNest</div>
-
     <div class="nav-buttons">
       <button class="nav-btn" onclick="goToResume()">Resume Generator</button>
       <button class="nav-btn" onclick="goToCV()">CV Generator</button>
@@ -171,6 +170,86 @@
   </div>
   
 
+=======
+<!-- ═══════════════════════════════════════════
+     SCREEN 0: HOME / TEMPLATE SELECTION
+═════════════════════════════════════════════ -->
+<div id="screen-home" class="screen active">
+  <div style="position:relative;z-index:1;width:100%;">
+    <div class="home-badge">
+      <div class="ai-dot"></div>
+      ATS-Optimised · Smart Templates
+    </div>
+    <h1 class="home-title">Your resume,<br><em>beautifully crafted</em></h1>
+    <p class="home-sub">Professional templates, real-time ATS scoring, and guided help — so you land the role you deserve.</p>
+
+    <div class="template-grid">
+
+      <div class="template-card" onclick="selectTemplate(1)">
+        <span class="tc-tag">Classic</span>
+        <div class="tc-preview preview-t1">
+          <div class="preview-lines">
+            <div class="pl thick xshort"></div>
+            <div class="pl short" style="margin-top:8px"></div>
+            <div class="pl" style="width:80%;margin-top:10px"></div>
+            <div class="pl accent short" style="margin-top:8px"></div>
+            <div class="pl" style="width:90%"></div>
+            <div class="pl short"></div>
+            <div class="pl accent short" style="margin-top:8px"></div>
+            <div class="pl" style="width:85%"></div>
+          </div>
+        </div>
+        <div class="tc-name">Clean Professional</div>
+        <div class="tc-desc">Traditional single-column. Most ATS-friendly.</div>
+      </div>
+
+      <div class="template-card" onclick="selectTemplate(2)">
+        <span class="tc-tag popular">Popular</span>
+        <div class="tc-preview preview-t2">
+          <div style="display:flex;height:100%;">
+            <div style="width:35%;background:rgba(26,92,255,.25);padding:8px;">
+              <div class="pl" style="height:28px;width:28px;border-radius:50%;background:rgba(255,255,255,.2)"></div>
+              <div class="pl short" style="margin-top:6px;width:70%"></div>
+              <div class="pl xshort" style="width:60%"></div>
+              <div class="pl accent" style="width:80%;margin-top:8px"></div>
+              <div class="pl" style="width:70%"></div>
+              <div class="pl" style="width:60%"></div>
+            </div>
+            <div style="flex:1;padding:8px;">
+              <div class="pl thick xshort"></div>
+              <div class="pl short" style="margin-top:4px"></div>
+              <div class="pl accent" style="margin-top:8px;width:60%"></div>
+              <div class="pl" style="width:90%"></div>
+              <div class="pl" style="width:80%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="tc-name">Two-Column Sidebar</div>
+        <div class="tc-desc">Modern layout with photo &amp; sidebar.</div>
+      </div>
+
+      <div class="template-card" onclick="selectTemplate(3)">
+        <span class="tc-tag modern">Modern</span>
+        <div class="tc-preview preview-t3">
+          <div style="padding:10px;">
+            <div style="background:rgba(139,92,246,.3);padding:8px;border-radius:4px;margin-bottom:6px;">
+              <div class="pl thick xshort"></div>
+              <div class="pl xshort" style="width:50%;margin-top:4px"></div>
+            </div>
+            <div class="pl accent2" style="width:50%;height:8px;margin-bottom:6px"></div>
+            <div class="pl" style="width:90%"></div>
+            <div class="pl" style="width:80%"></div>
+            <div class="pl accent2" style="width:40%;height:8px;margin-top:6px;margin-bottom:4px"></div>
+            <div class="pl" style="width:85%"></div>
+          </div>
+        </div>
+        <div class="tc-name">Modern Minimal</div>
+        <div class="tc-desc">Dark header, clean body, great for tech roles.</div>
+      </div>
+
+    </div>
+  </div>
+>>>>>>> 69baf3a (Added Resume Generator Project Files)
 </div>
 
 <!-- ═══════════════════════════════════════════
@@ -189,7 +268,11 @@
 
     <!-- Left sidebar -->
     <aside class="form-sidebar">
+<<<<<<< HEAD
       <div class="sidebar-logo">HireNest<span>Resume</span></div>
+=======
+      <div class="sidebar-logo">Petal<span>Resume</span></div>
+>>>>>>> 69baf3a (Added Resume Generator Project Files)
 
       <nav id="form-nav">
         <div class="nav-item active" onclick="scrollToSection('sec-personal')" data-sec="personal">
