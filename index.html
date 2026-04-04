@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Petal Resume — ATS-Ready Resume Builder</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     SCREEN 0: HOME / TEMPLATE SELECTION
+═════════════════════════════════════════════ -->
+<div id="screen-home" class="screen active">
+  <div style="position:relative;z-index:1;width:100%;">
+    <div class="home-badge">
+      <div class="ai-dot"></div>
+      ATS-Optimised · Smart Templates
+    </div>
+    <h1 class="home-title">Your resume,<br><em>beautifully crafted</em></h1>
+    <p class="home-sub">Professional templates, real-time ATS scoring, and guided help — so you land the role you deserve.</p>
+
+    <div class="template-grid">
+
+      <div class="template-card" onclick="selectTemplate(1)">
+        <span class="tc-tag">Classic</span>
+        <div class="tc-preview preview-t1">
+          <div class="preview-lines">
+            <div class="pl thick xshort"></div>
+            <div class="pl short" style="margin-top:8px"></div>
+            <div class="pl" style="width:80%;margin-top:10px"></div>
+            <div class="pl accent short" style="margin-top:8px"></div>
+            <div class="pl" style="width:90%"></div>
+            <div class="pl short"></div>
+            <div class="pl accent short" style="margin-top:8px"></div>
+            <div class="pl" style="width:85%"></div>
+          </div>
+        </div>
+        <div class="tc-name">Clean Professional</div>
+        <div class="tc-desc">Traditional single-column. Most ATS-friendly.</div>
+      </div>
+
+      <div class="template-card" onclick="selectTemplate(2)">
+        <span class="tc-tag popular">Popular</span>
+        <div class="tc-preview preview-t2">
+          <div style="display:flex;height:100%;">
+            <div style="width:35%;background:rgba(26,92,255,.25);padding:8px;">
+              <div class="pl" style="height:28px;width:28px;border-radius:50%;background:rgba(255,255,255,.2)"></div>
+              <div class="pl short" style="margin-top:6px;width:70%"></div>
+              <div class="pl xshort" style="width:60%"></div>
+              <div class="pl accent" style="width:80%;margin-top:8px"></div>
+              <div class="pl" style="width:70%"></div>
+              <div class="pl" style="width:60%"></div>
+            </div>
+            <div style="flex:1;padding:8px;">
+              <div class="pl thick xshort"></div>
+              <div class="pl short" style="margin-top:4px"></div>
+              <div class="pl accent" style="margin-top:8px;width:60%"></div>
+              <div class="pl" style="width:90%"></div>
+              <div class="pl" style="width:80%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="tc-name">Two-Column Sidebar</div>
+        <div class="tc-desc">Modern layout with photo &amp; sidebar.</div>
+      </div>
+
+      <div class="template-card" onclick="selectTemplate(3)">
+        <span class="tc-tag modern">Modern</span>
+        <div class="tc-preview preview-t3">
+          <div style="padding:10px;">
+            <div style="background:rgba(139,92,246,.3);padding:8px;border-radius:4px;margin-bottom:6px;">
+              <div class="pl thick xshort"></div>
+              <div class="pl xshort" style="width:50%;margin-top:4px"></div>
+            </div>
+            <div class="pl accent2" style="width:50%;height:8px;margin-bottom:6px"></div>
+            <div class="pl" style="width:90%"></div>
+            <div class="pl" style="width:80%"></div>
+            <div class="pl accent2" style="width:40%;height:8px;margin-top:6px;margin-bottom:4px"></div>
+            <div class="pl" style="width:85%"></div>
+          </div>
+        </div>
+        <div class="tc-name">Modern Minimal</div>
+        <div class="tc-desc">Dark header, clean body, great for tech roles.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SCREEN 1: FORM
+═════════════════════════════════════════════ -->
+<div id="screen-form" class="screen">
+
+  <!-- Mobile topbar -->
+  <div class="mobile-bar">
+    <button class="btn btn-ghost btn-sm" onclick="goTo('home')">← Back</button>
+    <strong style="font-size:14px">Build Resume</strong>
+    <button class="btn btn-primary btn-sm" onclick="buildResume()">Preview →</button>
+  </div>
+
+  <div class="form-layout">
+
+    <!-- Left sidebar -->
+    <aside class="form-sidebar">
+      <div class="sidebar-logo">Petal<span>Resume</span></div>
+
+      <nav id="form-nav">
+        <div class="nav-item active" onclick="scrollToSection('sec-personal')" data-sec="personal">
+          <span class="nav-icon">👤</span> Personal Info
+          <span class="nav-done">✓</span>
+        </div>
+        <div class="nav-item" onclick="scrollToSection('sec-summary')" data-sec="summary">
+          <span class="nav-icon">📝</span> Summary
+          <span class="nav-done">✓</span>
+        </div>
+        <div class="nav-item" onclick="scrollToSection('sec-experience')" data-sec="experience">
+          <span class="nav-icon">💼</span> Experience
+          <span class="nav-done">✓</span>
+        </div>
+        <div class="nav-item" onclick="scrollToSection('sec-education')" data-sec="education">
+          <span class="nav-icon">🎓</span> Education
+          <span class="nav-done">✓</span>
+        </div>
+        <div class="nav-item" onclick="scrollToSection('sec-skills')" data-sec="skills">
+          <span class="nav-icon">⚡</span> Skills
+          <span class="nav-done">✓</span>
+        </div>
+        <div class="nav-item" onclick="scrollToSection('sec-projects')" data-sec="projects">
+          <span class="nav-icon">🔧</span> Projects
+          <span class="nav-done">✓</span>
+        </div>
+        <div class="nav-item" onclick="scrollToSection('sec-extras')" data-sec="extras">
+          <span class="nav-icon">✨</span> Extras
+          <span class="nav-done">✓</span>
+        </div>
+      </nav>
+
+      <div class="progress-wrap">
+        <div class="progress-label">Completion</div>
+        <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:5%"></div></div>
+        <div style="font-size:12px;color:var(--ink-3);margin-top:6px;" id="prog-label">Just getting started</div>
+      </div>
+    </aside>
+
+    <!-- Main form -->
+    <main class="form-main" id="form-scroll-area">
+
+      <div class="form-header">
+        <div class="fh-step" id="form-template-label">Template 1 — Clean Professional</div>
+        <h1 class="fh-title">Tell us about yourself</h1>
+        <p class="fh-sub">Fill out each section. We'll handle the formatting.</p>
+      </div>
+
+      <!-- Personal -->
+      <div class="section-block" id="sec-personal">
+        <div class="sb-title">Personal Info</div>
+        <div class="field-row">
+          <div class="field">
+            <label>Full Name *</label>
+            <input type="text" id="f-name" placeholder="e.g. Arjun Mehta" oninput="liveScore()">
+          </div>
+          <div class="field">
+            <label>Job Title / Role</label>
+            <input type="text" id="f-role" placeholder="e.g. Software Engineer" oninput="liveScore()">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Email Address *</label>
+            <input type="email" id="f-email" placeholder="arjun@email.com" oninput="liveScore()">
+          </div>
+          <div class="field">
+            <label>Phone Number *</label>
+            <input type="tel" id="f-phone" placeholder="+91 98765 43210" oninput="liveScore()">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>City / Location</label>
+            <input type="text" id="f-location" placeholder="Bengaluru, India">
+          </div>
+          <div class="field">
+            <label>LinkedIn URL</label>
+            <input type="url" id="f-linkedin" placeholder="linkedin.com/in/yourname">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Portfolio / GitHub</label>
+            <input type="url" id="f-portfolio" placeholder="github.com/yourname">
+          </div>
+          <div class="field" id="photo-field" style="display:none;">
+            <label>Profile Photo</label>
+            <input type="file" id="f-photo" accept="image/*" onchange="handlePhoto(this)">
+            <span class="field-hint">JPG/PNG. Used in Template 2.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary -->
+      <div class="section-block" id="sec-summary">
+        <div class="sb-title">Professional Summary</div>
+        <div class="field field-row single">
+          <label>Summary (2–4 sentences recommended)</label>
+          <textarea id="f-summary" rows="4" placeholder="A results-driven Software Engineer with 3+ years of experience building scalable web applications..." oninput="updateCharCount(this,'sum-count',600)"></textarea>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="field-hint">💡 Include keywords matching the job description for ATS</span>
+            <span class="char-count" id="sum-count">0 / 600</span>
+          </div>
+          <div style="margin-top:8px; color: var(--ink-3); font-size: 12px;">
+            Tip: keep your summary concise, achievement-oriented, and tailored to the role.
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience -->
+      <div class="section-block" id="sec-experience">
+        <div class="sb-title">Work Experience</div>
+        <div id="exp-entries"></div>
+        <button class="add-entry-btn" onclick="addExperience()">+ Add Experience</button>
+      </div>
+
+      <!-- Education -->
+      <div class="section-block" id="sec-education">
+        <div class="sb-title">Education</div>
+        <div id="edu-entries"></div>
+        <button class="add-entry-btn" onclick="addEducation()">+ Add Education</button>
+      </div>
+
+      <!-- Skills -->
+      <div class="section-block" id="sec-skills">
+        <div class="sb-title">Skills</div>
+        <div class="field">
+          <label>Technical Skills <span style="margin-left:6px;font-size:12px;color:var(--ink-3)">ATS Key</span></label>
+          <div class="tag-input-wrap" id="skills-wrap" onclick="document.getElementById('skill-input').focus()">
+            <input class="tag-real-input" id="skill-input" placeholder="Type a skill, press Enter…" onkeydown="handleSkillInput(event)">
+          </div>
+          <span class="field-hint">Press <strong>Enter</strong> or <strong>comma</strong> to add. Add at least 5–8 skills for better ATS score.</span>
+          <div style="margin-top:8px; color: var(--ink-3); font-size: 12px;">Tip: use role-specific skills and keywords from the job post.</div>
+        </div>
+        <div class="field" style="margin-top:14px">
+          <label>Languages</label>
+          <input type="text" id="f-languages" placeholder="e.g. English (Fluent), Hindi (Native)">
+        </div>
+      </div>
+
+      <!-- Projects -->
+      <div class="section-block" id="sec-projects">
+        <div class="sb-title">Projects</div>
+        <div id="proj-entries"></div>
+        <button class="add-entry-btn" onclick="addProject()">+ Add Project</button>
+      </div>
+
+      <!-- Extras -->
+      <div class="section-block" id="sec-extras">
+        <div class="sb-title">Extras</div>
+        <div class="field-row">
+          <div class="field">
+            <label>Certifications</label>
+            <textarea id="f-certs" rows="2" placeholder="AWS Certified Developer (2024), Google Cloud Associate…"></textarea>
+          </div>
+          <div class="field">
+            <label>Awards & Achievements</label>
+            <textarea id="f-awards" rows="2" placeholder="Employee of the Quarter, Hackathon Winner…"></textarea>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Volunteer / Community</label>
+            <textarea id="f-volunteer" rows="2" placeholder="Volunteer at local NGO, open-source contributor…"></textarea>
+          </div>
+          <div class="field">
+            <label>Interests / Hobbies</label>
+            <input type="text" id="f-hobbies" placeholder="Photography, Chess, Open-source">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-ghost" onclick="goTo('home')">← Change Template</button>
+        <button class="btn btn-primary" onclick="buildResume()">Preview Resume →</button>
+      </div>
+
+    </main>
+
+    <!-- ATS panel -->
+    <aside class="form-ats">
+      <div class="ats-title">ATS Score</div>
+
+      <div class="ats-score-ring">
+        <svg width="90" height="90" viewBox="0 0 90 90">
+          <circle class="score-bg" cx="45" cy="45" r="40"></circle>
+          <circle class="score-fill" id="score-ring" cx="45" cy="45" r="40" style="stroke-dashoffset:251"></circle>
+        </svg>
+        <div class="score-text">
+          <span id="score-num">0</span>
+          <small>/ 100</small>
+        </div>
+      </div>
+
+      <div class="ats-checks" id="ats-checks">
+        <div class="ats-check fail"><span class="ats-check-icon">✗</span><span class="ats-check-text">Add your name & contact info</span></div>
+        <div class="ats-check fail"><span class="ats-check-icon">✗</span><span class="ats-check-text">Write a professional summary</span></div>
+        <div class="ats-check fail"><span class="ats-check-icon">✗</span><span class="ats-check-text">Add work experience</span></div>
+        <div class="ats-check fail"><span class="ats-check-icon">✗</span><span class="ats-check-text">List your education</span></div>
+        <div class="ats-check fail"><span class="ats-check-icon">✗</span><span class="ats-check-text">Add 5+ skills</span></div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="ats-title" style="margin-top:0">ATS Tips</div>
+
+      <div class="ats-tip"><strong>✓ Use standard section headings</strong>ATS bots scan for keywords like "Experience", "Education", "Skills".</div>
+      <div class="ats-tip"><strong>✓ Quantify achievements</strong>Use numbers — "Increased sales by 30%" beats "improved sales".</div>
+      <div class="ats-tip"><strong>✓ Mirror job description</strong>Copy exact skill keywords from the job posting into your resume.</div>
+      <div class="ats-tip"><strong>✓ No tables / columns in T1</strong>Template 1 is the most ATS-safe — linear reading order.</div>
+    </aside>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SCREEN 2: PREVIEW
+═════════════════════════════════════════════ -->
+<div id="screen-preview" class="screen">
+  <div class="preview-layout">
+
+    <div class="preview-area" id="preview-area">
+      <div class="resume-paper" id="resume-output"></div>
+    </div>
+
+    <aside class="preview-controls">
+      <div class="pc-title">Customise</div>
+
+      <div class="pc-section">
+        <div class="ats-score-mini" id="final-score-box">
+          <div class="score" id="final-score-num">—</div>
+          <div class="label">ATS Score</div>
+        </div>
+      </div>
+
+      <div class="pc-section">
+        <span class="pc-label">Accent Colour</span>
+        <div class="color-grid" id="color-grid">
+          <div class="color-swatch active" style="background:#2d2226" onclick="setAccent('#2d2226',this)"></div>
+          <div class="color-swatch" style="background:#b5636e" onclick="setAccent('#b5636e',this)"></div>
+          <div class="color-swatch" style="background:#9a5fb0" onclick="setAccent('#9a5fb0',this)"></div>
+          <div class="color-swatch" style="background:#3d7e78" onclick="setAccent('#3d7e78',this)"></div>
+          <div class="color-swatch" style="background:#7a5a8a" onclick="setAccent('#7a5a8a',this)"></div>
+          <div class="color-swatch" style="background:#c49aaa" onclick="setAccent('#c49aaa',this)"></div>
+          <div class="color-swatch" style="background:#6b8fa8" onclick="setAccent('#6b8fa8',this)"></div>
+          <div class="color-swatch" style="background:#8a7262" onclick="setAccent('#8a7262',this)"></div>
+          <div class="color-swatch" style="background:#4a6858" onclick="setAccent('#4a6858',this)"></div>
+          <div class="color-swatch" style="background:#a06070" onclick="setAccent('#a06070',this)"></div>
+        </div>
+      </div>
+
+      <div class="pc-section">
+        <span class="pc-label">Font Family</span>
+        <div class="font-btns" id="font-btns">
+          <button class="font-btn active" onclick="setFont('Georgia, serif',this)" style="font-family:Georgia">Georgia</button>
+          <button class="font-btn" onclick="setFont('\'DM Sans\',sans-serif',this)" style="font-family:'DM Sans',sans-serif">DM Sans</button>
+          <button class="font-btn" onclick="setFont('\'Trebuchet MS\',sans-serif',this)" style="font-family:'Trebuchet MS'">Trebuchet MS</button>
+          <button class="font-btn" onclick="setFont('\'Palatino\',serif',this)" style="font-family:'Palatino'">Palatino</button>
+        </div>
+      </div>
+
+      <div class="pc-section">
+        <span class="pc-label">Font Size</span>
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-ghost btn-sm" onclick="adjustFontSize(-1)">A−</button>
+          <button class="btn btn-ghost btn-sm" onclick="adjustFontSize(1)">A+</button>
+        </div>
+      </div>
+
+      <div class="pc-section">
+        <button class="print-btn" onclick="window.print()">⬇ Download PDF</button>
+        <button class="back-btn-pr" onclick="goTo('form')">← Edit Resume</button>
+      </div>
+
+    </aside>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
