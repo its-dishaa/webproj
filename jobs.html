@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Job Finder</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f7fb;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    .search-box {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    input {
+        flex: 1;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+
+    button {
+        padding: 12px 20px;
+        border: none;
+        background: #007bff;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #0056b3;
+    }
+
+    .job-card {
+        background: white;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .job-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    .company {
+        color: #555;
+        margin: 5px 0;
+    }
+
+    .location {
+        font-size: 14px;
+        color: #777;
+    }
+
+    .apply-btn {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 12px;
+        background: green;
+        color: white;
+        border-radius: 6px;
+        text-decoration: none;
+    }
+
+    .loader {
+        text-align: center;
+        margin-top: 20px;
+        display: none;
+    }
+</style>
+</head>
+
+<body>
+<div class="navbar">
+    <div class="logo">PetalResume</div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="goToResume()">Resume Generator</button>
+      <button class="nav-btn" onclick="goToCV()">CV Generator</button>
+      <button class="nav-btn" onclick="goToJobs()">Job Finder</button>
+      <button class="nav-btn active" onclick="goToCoverLetter()">Cover Letter</button>
+    </div>
+  </div>
+
+<div class="container">
+    <h1>🔍 Find Jobs</h1>
+
+    <div class="search-box">
+        <input type="text" id="roleInput" placeholder="Enter job role (e.g. Frontend Developer)">
+        <button onclick="searchJobs()">Search</button>
+    </div>
+
+    <div class="loader" id="loader">Loading jobs...</div>
+
+    <div id="jobsContainer"></div>
+</div>
+
+<script>
+const APP_ID = "9c3a952a";
+const APP_KEY = "777dc1aeadfa0ea08b6641d265c1ac15";
+function goToResume() {
+    window.location.href = "index.html";
+}
+function goToCoverLetter() {
+  window.location.href = "coverletter.html";
+}
+function goToCV() {
+    window.location.href = "cv.html";
+}
+
+function goToJobs() {
+    window.location.href = "jobs.html";
+}
+async function searchJobs() {
+    const role = document.getElementById("roleInput").value;
+    const container = document.getElementById("jobsContainer");
+    const loader = document.getElementById("loader");
+
+    if (!role) {
+        alert("Please enter a job role");
+        return;
+    }
+
+    container.innerHTML = "";
+    loader.style.display = "block";
+
+    try {
+        const url = `https://api.adzuna.com/v1/api/jobs/in/search/1?app_id=${APP_ID}&app_key=${APP_KEY}&results_per_page=10&what=${role}`;
+
+        const response = await fetch(url);
+        const data = await response.json();
+
+        loader.style.display = "none";
+
+        if (data.results.length === 0) {
+            container.innerHTML = "<p>No jobs found</p>";
+            return;
+        }
+
+        data.results.forEach(job => {
+            const jobCard = document.createElement("div");
+            jobCard.className = "job-card";
+
+            jobCard.innerHTML = `
+                <div class="job-title">${job.title}</div>
+                <div class="company">${job.company.display_name}</div>
+                <div class="location">${job.location.display_name}</div>
+                <a href="${job.redirect_url}" target="_blank" class="apply-btn">Apply</a>
+            `;
+
+            container.appendChild(jobCard);
+        });
+
+    } catch (error) {
+        loader.style.display = "none";
+        container.innerHTML = "<p>Error fetching jobs</p>";
+        console.error(error);
+    }
+}
+</script>
+
+</body>
+</html>

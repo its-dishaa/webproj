@@ -404,21 +404,38 @@ function collectFormData() {
 
   return formData;
 }
-
 function buildResume() {
-  const data = collectFormData();
-  let html = '';
+  const data = collectFormData(); // get all form data
+  const template = localStorage.getItem("selectedTemplate") || 1;
 
-  if (appState.currentTemplate === 1) html = buildTemplateOne(data);
-  if (appState.currentTemplate === 2) html = buildTemplateTwo(data);
-  if (appState.currentTemplate === 3) html = buildTemplateThree(data);
+  let html = "";
 
-  const output = $('#resume-output');
-  if (output) output.innerHTML = html;
+  if (template == 1) {
+    html = buildTemplateOne(data);
+  } else if (template == 2) {
+    html = buildTemplateTwo(data);
+  } else if (template == 3) {
+    html = buildTemplateThree(data);
+  }
 
-  applyRenderStyles();
-  updateUIFromScore();
-  goTo('preview');
+  document.getElementById("resume-output").innerHTML = html;
+
+  applyRenderStyles(); // apply font + size
+
+  goTo("preview"); // switch screen
+}
+function scrollToTemplates() {
+  const section = document.getElementById("template-section");
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" });
+  }
+}
+function goToJobs() {
+  // alert("Clicked");  // 👈 test
+  window.location.href = "jobs.html";
+}
+function goToCoverLetter() {
+  window.location.href = "coverletter.html";
 }
 
 function applyRenderStyles() {
@@ -691,6 +708,42 @@ function adjustFontSize(delta) {
   const inner = $('#tpl-inner');
   if (inner) inner.style.fontSize = `${appState.resumeSizePx}px`;
 }
+
+function goToCV() {
+  window.location.href = "cv.html";
+}
+
+function goToResume() {
+  window.location.href = "index.html";
+}
+function selectTemplate(templateId) {
+  // Save selected template
+  localStorage.setItem("selectedTemplate", templateId);
+
+  // Redirect to form screen
+  document.getElementById("screen-home").classList.remove("active");
+  document.getElementById("screen-form").classList.add("active");
+}
+
+window.onload = function () {
+  const template = localStorage.getItem("selectedTemplate") || 1;
+
+  // Update label
+  const label = document.getElementById("form-template-label");
+
+  if (template == 1) {
+    label.innerText = "Template 1 — Clean Professional";
+  }
+  if (template == 2) {
+    label.innerText = "Template 2 — Two Column Sidebar";
+
+    // Show photo field only for template 2
+    document.getElementById("photo-field").style.display = "block";
+  }
+  if (template == 3) {
+    label.innerText = "Template 3 — Modern Minimal";
+  }
+};
 
 // -----------------------------------------------------------------------------
 // AI helpers removed per user request

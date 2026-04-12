@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CV Generator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    margin: 0;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .form, .output {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  input, textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+  }
+
+  button {
+    padding: 10px;
+    background: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  #cv-result {
+    padding: 20px;
+    border: 1px solid #ddd;
+  }
+
+  .cv-section {
+    margin-bottom: 15px;
+  }
+
+  .cv-section h3 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+  }
+  .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1a1a1a;
+  color: white;
+  padding: 12px 20px;
+}
+
+.logo {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-btn {
+  padding: 8px 14px;
+  border: none;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.nav-btn:hover {
+  background: #333;
+}
+
+.nav-btn.active {
+  background: #4CAF50;
+}
+</style>
+</head>
+
+<body>
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">PetalResume</div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" onclick="goToResume()">Resume Generator</button>
+      <button class="nav-btn" onclick="goToCV()">CV Generator</button>
+      <button class="nav-btn" onclick="goToJobs()">Job Finder</button>
+      <button class="nav-btn active" onclick="goToCoverLetter()">Cover Letter</button>
+    </div>
+  </div>
+<h1>CV Generator</h1>
+
+<div class="container">
+
+  <!-- FORM -->
+  <div class="form">
+    <h2>Enter Details</h2>
+
+    <input type="text" id="name" placeholder="Full Name">
+    <input type="text" id="role" placeholder="Role">
+
+    <textarea id="summary" placeholder="Summary"></textarea>
+
+    <textarea id="education" placeholder="Education"></textarea>
+
+    <textarea id="experience" placeholder="Experience"></textarea>
+
+    <textarea id="research" placeholder="Research Experience"></textarea>
+
+    <textarea id="publications" placeholder="Publications"></textarea>
+
+    <textarea id="skills" placeholder="Skills (comma separated)"></textarea>
+
+    <button onclick="generateCV()">Generate CV</button>
+    <button onclick="downloadCV()">Download PDF</button>
+  </div>
+
+  <!-- OUTPUT -->
+  <div class="output">
+    <h2>Preview</h2>
+    <div id="cv-result"></div>
+  </div>
+
+</div>
+
+<script>
+function generateCV() {
+  const name = document.getElementById("name").value;
+  const role = document.getElementById("role").value;
+  const summary = document.getElementById("summary").value;
+  const education = document.getElementById("education").value;
+  const experience = document.getElementById("experience").value;
+  const research = document.getElementById("research").value;
+  const publications = document.getElementById("publications").value;
+  const skills = document.getElementById("skills").value;
+
+  const cvHTML = `
+    <h1>${name}</h1>
+    <h2>${role}</h2>
+
+    <div class="cv-section">
+      <h3>Summary</h3>
+      <p>${summary}</p>
+    </div>
+
+    <div class="cv-section">
+      <h3>Education</h3>
+      <p>${education}</p>
+    </div>
+
+    <div class="cv-section">
+      <h3>Experience</h3>
+      <p>${experience}</p>
+    </div>
+
+    <div class="cv-section">
+      <h3>Research</h3>
+      <p>${research}</p>
+    </div>
+
+    <div class="cv-section">
+      <h3>Publications</h3>
+      <p>${publications}</p>
+    </div>
+
+    <div class="cv-section">
+      <h3>Skills</h3>
+      <p>${skills}</p>
+    </div>
+  `;
+
+  document.getElementById("cv-result").innerHTML = cvHTML;
+}
+function goToResume() {
+  window.location.href = "index.html";
+}
+function goToJobs() {
+  window.location.href = "jobs.html";
+}
+function goToCoverLetter() {
+  window.location.href = "coverletter.html";
+}
+
+
+function goToCV() {
+  window.location.href = "cv.html";
+}
+function downloadCV() {
+  window.print();
+}
+</script>
+
+</body>
+</html>
