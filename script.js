@@ -404,7 +404,6 @@ function collectFormData() {
 
   return formData;
 }
-<<<<<<< HEAD
 function buildResume() {
   const data = collectFormData(); // get all form data
   const template = localStorage.getItem("selectedTemplate") || 1;
@@ -431,29 +430,16 @@ function scrollToTemplates() {
     section.scrollIntoView({ behavior: "smooth" });
   }
 }
+function navigateTo(url) {
+  document.body.classList.add('page-transitioning');
+  window.setTimeout(() => { window.location.href = url; }, 260);
+}
+
 function goToJobs() {
-  // alert("Clicked");  // 👈 test
-  window.location.href = "jobs.html";
+  navigateTo("jobs.html");
 }
 function goToCoverLetter() {
-  window.location.href = "coverletter.html";
-=======
-
-function buildResume() {
-  const data = collectFormData();
-  let html = '';
-
-  if (appState.currentTemplate === 1) html = buildTemplateOne(data);
-  if (appState.currentTemplate === 2) html = buildTemplateTwo(data);
-  if (appState.currentTemplate === 3) html = buildTemplateThree(data);
-
-  const output = $('#resume-output');
-  if (output) output.innerHTML = html;
-
-  applyRenderStyles();
-  updateUIFromScore();
-  goTo('preview');
->>>>>>> 69baf3a (Added Resume Generator Project Files)
+  navigateTo("coverletter.html");
 }
 
 function applyRenderStyles() {
@@ -727,13 +713,12 @@ function adjustFontSize(delta) {
   if (inner) inner.style.fontSize = `${appState.resumeSizePx}px`;
 }
 
-<<<<<<< HEAD
 function goToCV() {
-  window.location.href = "cv.html";
+  navigateTo("cv.html");
 }
 
 function goToResume() {
-  window.location.href = "index.html";
+  navigateTo("index.html");
 }
 function selectTemplate(templateId) {
   // Save selected template
@@ -745,6 +730,7 @@ function selectTemplate(templateId) {
 }
 
 window.onload = function () {
+  document.body.classList.add('page-loaded');
   const template = localStorage.getItem("selectedTemplate") || 1;
 
   // Update label
@@ -764,8 +750,6 @@ window.onload = function () {
   }
 };
 
-=======
->>>>>>> 69baf3a (Added Resume Generator Project Files)
 // -----------------------------------------------------------------------------
 // AI helpers removed per user request
 // -----------------------------------------------------------------------------

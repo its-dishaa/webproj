@@ -1,185 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cover Letter Generator</title>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
-
-    body {
-      background: #f4f7fb;
-      min-height: 100vh;
-    }
-
-    /* Navbar */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #1a1a1a;
-      color: white;
-      padding: 14px 24px;
-    }
-
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-      color: #4CAF50;
-    }
-
-    .nav-buttons {
-      display: flex;
-      gap: 10px;
-    }
-
-    .nav-btn {
-      background: transparent;
-      color: white;
-      border: none;
-      padding: 10px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .nav-btn:hover {
-      background: #333;
-    }
-
-    .nav-btn.active {
-      background: #4CAF50;
-    }
-
-    /* Main Layout */
-    .container {
-      max-width: 1200px;
-      margin: 30px auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 25px;
-      padding: 0 20px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 14px;
-      padding: 24px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 10px;
-      color: #222;
-    }
-
-    .subtitle {
-      text-align: center;
-      color: #666;
-      margin-bottom: 25px;
-    }
-
-    label {
-      display: block;
-      margin-top: 14px;
-      margin-bottom: 6px;
-      font-weight: bold;
-      color: #333;
-    }
-
-    input,
-    textarea,
-    select {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 15px;
-      outline: none;
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 90px;
-    }
-
-    .btn-group {
-      display: flex;
-      gap: 12px;
-      margin-top: 20px;
-      flex-wrap: wrap;
-    }
-
-    .generate-btn,
-    .download-btn,
-    .copy-btn {
-      border: none;
-      padding: 12px 18px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 15px;
-      transition: 0.3s;
-    }
-
-    .generate-btn {
-      background: #4CAF50;
-      color: white;
-    }
-
-    .download-btn {
-      background: #007bff;
-      color: white;
-    }
-
-    .copy-btn {
-      background: #222;
-      color: white;
-    }
-
-    .generate-btn:hover,
-    .download-btn:hover,
-    .copy-btn:hover {
-      transform: translateY(-2px);
-      opacity: 0.9;
-    }
-
-    #preview {
-      white-space: pre-wrap;
-      line-height: 1.8;
-      color: #222;
-    }
-
-    .empty-state {
-      color: #777;
-      text-align: center;
-      margin-top: 100px;
-    }
-
-    @media (max-width: 900px) {
-      .container {
-        grid-template-columns: 1fr;
-      }
-
-      .nav-buttons {
-        flex-wrap: wrap;
-      }
-    }
-  </style>
+  <title>HireNest — Cover Letter Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-  <!-- Navbar -->
   <div class="navbar">
-    <div class="logo">PetalResume</div>
-
+    <div class="logo">HireNest</div>
     <div class="nav-buttons">
       <button class="nav-btn" onclick="goToResume()">Resume Generator</button>
       <button class="nav-btn" onclick="goToCV()">CV Generator</button>
@@ -187,55 +17,35 @@
       <button class="nav-btn active" onclick="goToCoverLetter()">Cover Letter</button>
     </div>
   </div>
-
-  <div style="padding:30px 20px 0;">
-    <h1>Cover Letter Generator</h1>
-    <p class="subtitle">Create a personalized cover letter for any role instantly</p>
-  </div>
-
-  <div class="container">
-
-    <!-- Input Section -->
-    <div class="card">
-      <label>Your Name</label>
-      <input type="text" id="name" placeholder="Enter your name">
-
-      <label>Job Role</label>
-      <input type="text" id="role" placeholder="Frontend Developer">
-
-      <label>Company Name</label>
-      <input type="text" id="company" placeholder="Google">
-
-      <label>Your Skills</label>
-      <textarea id="skills" placeholder="HTML, CSS, JavaScript, React"></textarea>
-
-      <label>Your Experience / Projects</label>
-      <textarea id="experience" placeholder="Built responsive websites and worked on projects..."></textarea>
-
-      <label>Cover Letter Tone</label>
-      <select id="tone">
-        <option value="professional">Professional</option>
-        <option value="friendly">Friendly</option>
-        <option value="confident">Confident</option>
-      </select>
-
-      <div class="btn-group">
-        <button class="generate-btn" onclick="generateLetter()">Generate Cover Letter</button>
-        <button class="copy-btn" onclick="copyLetter()">Copy</button>
-        <button class="download-btn" onclick="downloadLetter()">Download</button>
-      </div>
+  <main style="max-width:1160px; margin:0 auto; padding:72px 24px 80px;">
+    <section class="section-heading" style="margin-bottom:32px; text-align:left;">
+      <h2>Cover Letter Generator</h2>
+      <p>Write a polished, tailored introduction for every application.</p>
+    </section>
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px;">
+      <section class="section-block">
+        <div class="form-header" style="margin-bottom:24px;">
+          <div class="fh-step">Compose your message</div>
+          <h3 class="fh-title" style="font-size:28px; margin-top:12px;">Build a strong opening paragraph.</h3>
+        </div>
+        <div class="field"><label for="name">Your Name</label><input id="name" type="text" placeholder="Enter your name"></div>
+        <div class="field"><label for="role">Job Role</label><input id="role" type="text" placeholder="Frontend Developer"></div>
+        <div class="field"><label for="company">Company Name</label><input id="company" type="text" placeholder="Google"></div>
+        <div class="field"><label for="skills">Skills</label><textarea id="skills" placeholder="HTML, CSS, JavaScript, React"></textarea></div>
+        <div class="field"><label for="experience">Experience / Projects</label><textarea id="experience" placeholder="Built responsive websites and projects..."></textarea></div>
+        <div class="field"><label for="tone">Tone</label><select id="tone"><option value="professional">Professional</option><option value="friendly">Friendly</option><option value="confident">Confident</option></select></div>
+        <div class="form-actions" style="padding-top:16px;">
+          <button class="btn btn-primary" onclick="generateLetter()">Generate</button>
+          <button class="btn btn-secondary" onclick="copyLetter()">Copy</button>
+          <button class="btn btn-secondary" onclick="downloadLetter()">Download</button>
+        </div>
+      </section>
+      <section class="section-block">
+        <h3 style="margin-bottom:18px;">Preview</h3>
+        <div id="preview" class="empty-state" style="min-height: 440px; white-space: pre-wrap; line-height:1.75; color: var(--ink);">Your generated cover letter will appear here.</div>
+      </section>
     </div>
-
-    <!-- Preview Section -->
-    <div class="card">
-      <h2 style="margin-bottom:15px;">Preview</h2>
-      <div id="preview" class="empty-state">
-        Your generated cover letter will appear here.
-      </div>
-    </div>
-
-  </div>
-
+  </main>
   <script>
     function generateLetter() {
       const name = document.getElementById('name').value.trim();
@@ -244,82 +54,81 @@
       const skills = document.getElementById('skills').value.trim();
       const experience = document.getElementById('experience').value.trim();
       const tone = document.getElementById('tone').value;
-
       if (!name || !role || !company) {
         alert('Please fill name, role and company');
         return;
       }
-
       let intro = "";
       let ending = "";
-
       if (tone === 'professional') {
-        intro = `Dear Hiring Manager,\n\nI am writing to express my interest in the ${role} position at ${company}.`;
-        ending = `Thank you for your time and consideration. I would welcome the opportunity to discuss how I can contribute to ${company}.\n\nSincerely,\n${name}`;
-      }
+        intro = `Dear Hiring Manager,
 
+I am writing to express my interest in the ${role} position at ${company}.`;
+        ending = `Thank you for your time and consideration. I would welcome the opportunity to discuss how I can contribute to ${company}.
+
+Sincerely,
+${name}`;
+      }
       if (tone === 'friendly') {
-        intro = `Hello,\n\nI was excited to see the opening for ${role} at ${company}.`;
-        ending = `Thank you for considering my application. I would love the opportunity to contribute to your team.\n\nBest regards,\n${name}`;
-      }
+        intro = `Hello,
 
+I was excited to see the opening for ${role} at ${company}.`;
+        ending = `Thank you for considering my application. I would love the opportunity to contribute to your team.
+
+Best regards,
+${name}`;
+      }
       if (tone === 'confident') {
-        intro = `Dear Hiring Team,\n\nI am confident that my background makes me a strong fit for the ${role} role at ${company}.`;
-        ending = `I am eager to bring my skills and dedication to ${company}. I look forward to hearing from you soon.\n\nRegards,\n${name}`;
+        intro = `Dear Hiring Team,
+
+I am confident that my background makes me a strong fit for the ${role} role at ${company}.`;
+        ending = `I am eager to bring my skills and dedication to ${company}. I look forward to hearing from you soon.
+
+Regards,
+${name}`;
       }
+      const letter = `${intro}
 
-      const letter = `${intro}\n\nWith skills in ${skills}, I have developed strong abilities that align closely with this opportunity. ${experience}\n\nI am particularly interested in ${company} because of its innovation and growth opportunities. I believe I can make a valuable contribution while continuing to learn and grow professionally.\n\n${ending}`;
+With skills in ${skills}, I have developed strong abilities that align closely with this opportunity. ${experience}
 
-      document.getElementById('preview').classList.remove('empty-state');
-      document.getElementById('preview').innerText = letter;
+I am particularly interested in ${company} because of its innovation and growth opportunities. I believe I can make a valuable contribution while continuing to learn and grow professionally.
+
+${ending}`;
+      const preview = document.getElementById('preview');
+      preview.classList.remove('empty-state');
+      preview.innerText = letter;
     }
-
     function copyLetter() {
       const text = document.getElementById('preview').innerText;
-
       if (text.includes('Your generated cover letter')) {
         alert('Generate a cover letter first');
         return;
       }
-
       navigator.clipboard.writeText(text);
       alert('Cover letter copied!');
     }
-
     function downloadLetter() {
       const text = document.getElementById('preview').innerText;
-
       if (text.includes('Your generated cover letter')) {
         alert('Generate a cover letter first');
         return;
       }
-
       const blob = new Blob([text], { type: 'text/plain' });
       const link = document.createElement('a');
       link.href = URL.createObjectURL(blob);
       link.download = 'cover-letter.txt';
       link.click();
     }
-
-    // Navbar Routing
-    function goToResume() {
-      window.location.href = 'index.html';
+    function navigateTo(url) {
+      document.body.classList.add('page-transitioning');
+      window.setTimeout(() => { window.location.href = url; }, 260);
     }
-
-    function goToCV() {
-      window.location.href = 'cv.html';
-    }
-
-    function goToJobs() {
-      window.location.href = 'jobs.html';
-    }
-
-    function goToCoverLetter() {
-      window.location.href = 'coverletter.html';
-    }
-
-    // Auto-fill role from job page or resume page
+    function goToResume() { navigateTo('index.html'); }
+    function goToCV() { navigateTo('cv.html'); }
+    function goToJobs() { navigateTo('jobs.html'); }
+    function goToCoverLetter() { navigateTo('coverletter.html'); }
     window.onload = function () {
+      document.body.classList.add('page-loaded');
       const savedRole = localStorage.getItem('jobRole');
       if (savedRole) {
         document.getElementById('role').value = savedRole;
@@ -328,6 +137,3 @@
   </script>
 </body>
 </html>
-
-<button class="nav-btn" onclick="goToCoverLetter()">Cover Letter</button>
-
