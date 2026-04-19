@@ -40,26 +40,30 @@ function goTo(screenName) {
 
 function selectTemplate(templateId) {
   appState.currentTemplate = templateId;
+
+  localStorage.setItem("selectedTemplate", templateId);
+
   const labels = {
-    1: 'Template 1 � Clean Professional',
-    2: 'Template 2 � Two-Column Sidebar',
-    3: 'Template 3 � Modern Minimal',
+    1: "Template 1 — Clean Professional",
+    2: "Template 2 — Two Column Sidebar",
+    3: "Template 3 — Modern Minimal"
   };
 
-  setText('#form-template-label', labels[templateId] || 'Template 1 � Clean Professional');
+  setText("#form-template-label", labels[templateId]);
 
-  // Template 2 needs a photo field; others do not.
-  const photoContainer = $('#photo-field');
-  if (photoContainer) photoContainer.style.display = templateId === 2 ? 'flex' : 'none';
+  // Show photo only for template 2
+  const photoField = $("#photo-field");
+  if (photoField) {
+    photoField.style.display = templateId === 2 ? "flex" : "none";
+  }
 
-  // Ensure default one record exists in each section.
+  // Ensure at least one entry
   if (appState.experiences.length === 0) addExperience();
   if (appState.educations.length === 0) addEducation();
   if (appState.projects.length === 0) addProject();
 
-  goTo('form');
+  goTo("form");
 }
-
 function scrollToSection(sectionId) {
   const target = document.getElementById(sectionId);
   if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -405,24 +409,49 @@ function collectFormData() {
   return formData;
 }
 function buildResume() {
-  const data = collectFormData(); // get all form data
-  const template = localStorage.getItem("selectedTemplate") || 1;
+  let name = $("#f-name")?.value.trim();
+  let email = $("#f-email")?.value.trim();
+  let phone = $("#f-phone")?.value.trim();
+  let dob = $("#f-dob")?.value;
+
+  let errorBox = $("#form-error");
+
+  // ✅ VALIDATION
+  if (!name || !email || !phone || !dob) {
+    if (errorBox) {
+      errorBox.innerText = "⚠ Please fill all required fields (Name, Email, Phone, DOB)";
+    }
+    return;
+  }
+
+  if (errorBox) errorBox.innerText = "";
+
+  // ✅ Collect full form data
+  const data = collectFormData();
 
   let html = "";
 
-  if (template == 1) {
+  // ✅ Choose template
+  if (appState.currentTemplate == 1) {
     html = buildTemplateOne(data);
-  } else if (template == 2) {
+  } 
+  else if (appState.currentTemplate == 2) {
     html = buildTemplateTwo(data);
-  } else if (template == 3) {
+  } 
+  else {
     html = buildTemplateThree(data);
   }
 
-  document.getElementById("resume-output").innerHTML = html;
+  // ✅ Render output
+  const output = $("#resume-output");
+  if (output) {
+    output.innerHTML = html;
+  }
 
-  applyRenderStyles(); // apply font + size
+  // Apply styles
+  applyRenderStyles();
 
-  goTo("preview"); // switch screen
+  goTo("preview");
 }
 function scrollToTemplates() {
   const section = document.getElementById("template-section");

@@ -1,170 +1,305 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HireNest — CV Generator</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HireNest — CV Generator</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+}
+
+body{
+  background:#f5f7fb;
+  color:#222;
+}
+
+/* NAVBAR */
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 30px;
+  background: #111113;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-btn {
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.nav-btn:hover {
+  background: rgba(255,255,255,0.2);
+  transform: translateY(-1px);
+}
+
+.nav-btn.active {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+
+/* MAIN */
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:40px 20px;
+}
+
+.heading{
+  margin-bottom:30px;
+}
+
+.heading h2{
+  font-size:28px;
+  margin-bottom:6px;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+}
+
+/* FORM */
+.form-box{
+  background:#fff;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.05);
+}
+
+.field{
+  margin-bottom:15px;
+}
+
+.field label{
+  display:block;
+  margin-bottom:6px;
+  font-weight:500;
+}
+
+.field input,
+.field textarea{
+  width:100%;
+  padding:10px;
+  border:1px solid #ddd;
+  border-radius:6px;
+}
+
+textarea{
+  resize:none;
+  height:80px;
+}
+
+/* BUTTONS */
+.btn{
+  padding:10px 16px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.btn-primary{
+  background:#2563eb;
+  color:white;
+}
+
+.btn-secondary{
+  background:#e5e7eb;
+}
+
+/* PREVIEW */
+.preview-box{
+  background:#fff;
+  padding:30px;
+  border-radius:12px;
+  min-height:500px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.05);
+}
+
+.empty{
+  color:#888;
+}
+
+/* CV DESIGN */
+.cv h1{
+  font-size:28px;
+  margin-bottom:5px;
+}
+
+.cv .role{
+  color:#2563eb;
+  margin-bottom:15px;
+}
+
+.cv-section{
+  margin-top:20px;
+}
+
+.cv-section h3{
+  font-size:14px;
+  text-transform:uppercase;
+  margin-bottom:6px;
+  color:#2563eb;
+}
+
+.cv-section p{
+  font-size:14px;
+  line-height:1.6;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .grid{
+    grid-template-columns:1fr;
+  }
+}
+</style>
 </head>
+
 <body>
-  <div class="navbar">
-    <div class="logo">HireNest</div>
-    <div class="nav-buttons">
-      <button class="nav-btn" onclick="goToResume()">Resume Generator</button>
-      <button class="nav-btn active" onclick="goToCV()">CV Generator</button>
-      <button class="nav-btn" onclick="goToJobs()">Job Finder</button>
-      <button class="nav-btn" onclick="goToCoverLetter()">Cover Letter</button>
-    </div>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="logo">HireNest</div>
+
+  <div class="nav-buttons">
+    <button class="nav-btn" onclick="goToResume()">Resume Generator</button>
+    <button class="nav-btn active" onclick="goToCV()">CV Generator</button>
+    <button class="nav-btn" onclick="goToJobs()">Job Finder</button>
+    <button class="nav-btn" onclick="goToCoverLetter()">Cover Letter</button>
   </div>
-  <main style="max-width:1180px; margin:0 auto; padding:72px 24px 80px;">
-    <section class="section-heading" style="margin-bottom:32px; text-align:left;">
-      <h2>CV Generator</h2>
-      <p>Compose a clean, recruiter-ready CV in a premium, modern layout.</p>
-    </section>
-    <div style="display:grid; grid-template-columns: 1.1fr 0.9fr; gap:24px;">
-      <section class="section-block">
-        <div class="form-header" style="margin-bottom:22px;">
-          <div class="fh-step">Enter details</div>
-          <h3 class="fh-title" style="font-size:28px; margin-top:12px;">Build your professional CV.</h3>
-        </div>
-        <div class="field"><label for="name">Full Name</label><input id="name" type="text" placeholder="Full Name"></div>
-        <div class="field"><label for="role">Role</label><input id="role" type="text" placeholder="Product Designer"></div>
-        <div class="field"><label for="summary">Summary</label><textarea id="summary" placeholder="Brief profile summary"></textarea></div>
-        <div class="field"><label for="education">Education</label><textarea id="education" placeholder="Education details"></textarea></div>
-        <div class="field"><label for="experience">Experience</label><textarea id="experience" placeholder="Experience details"></textarea></div>
-        <div class="field"><label for="skills">Skills</label><textarea id="skills" placeholder="Skills, tools, and languages"></textarea></div>
-        <div class="form-actions" style="padding-top:16px;">
-          <button class="btn btn-primary" onclick="generateCV()">Generate CV</button>
-          <button class="btn btn-secondary" onclick="downloadCV()">Download</button>
-        </div>
-      </section>
-      <section class="section-block">
-        <h3 style="margin-bottom:18px;">Preview</h3>
-        <div id="cv-result" class="empty-state" style="min-height: 520px; color: var(--ink); line-height:1.75;">Your CV preview will appear here.</div>
-      </section>
+</div>
+
+<!-- MAIN -->
+<div class="container">
+
+  <div class="heading">
+    <h2>CV Generator</h2>
+    <p>Create a clean and professional CV instantly</p>
+  </div>
+
+  <div class="grid">
+
+    <!-- FORM -->
+    <div class="form-box">
+
+      <div class="field">
+        <label>Name *</label>
+        <input id="name" required>
+      </div>
+
+      <div class="field">
+        <label>Role *</label>
+        <input id="role" required>
+      </div>
+
+      <div class="field">
+        <label>Summary</label>
+        <textarea id="summary"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Education</label>
+        <textarea id="education"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Experience</label>
+        <textarea id="experience"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Skills</label>
+        <textarea id="skills"></textarea>
+      </div>
+
+      <button class="btn btn-primary" onclick="generateCV()">Generate CV</button>
+      <button class="btn btn-secondary" onclick="downloadCV()">Download</button>
+
     </div>
-  </main>
-  <script>
-    function generateCV() {
-      const name = document.getElementById("name").value.trim();
-      const role = document.getElementById("role").value.trim();
-      const summary = document.getElementById("summary").value.trim();
-      const education = document.getElementById("education").value.trim();
-      const experience = document.getElementById("experience").value.trim();
-      const skills = document.getElementById("skills").value.trim();
-      const formatText = text => text.replace(/\n/g, "<br>") || "—";
-      const cvHTML = `
-        <article class="cv-export">
-          <header class="cv-header">
-            <h1>${name || 'Your Name'}</h1>
-            <p class="subtitle">${role || 'Your Title or Role'}</p>
-          </header>
-          <section class="cv-section">
-            <h3>Summary</h3>
-            <p>${formatText(summary)}</p>
-          </section>
-          <section class="cv-section">
-            <h3>Education</h3>
-            <p>${formatText(education)}</p>
-          </section>
-          <section class="cv-section">
-            <h3>Experience</h3>
-            <p>${formatText(experience)}</p>
-          </section>
-          <section class="cv-section">
-            <h3>Skills</h3>
-            <p>${formatText(skills)}</p>
-          </section>
-        </article>
-      `;
-      const result = document.getElementById("cv-result");
-      result.classList.remove("empty-state");
-      result.innerHTML = cvHTML;
-    }
 
-    function downloadCV() {
-      const result = document.getElementById("cv-result");
-      if (!result.innerHTML.trim() || result.classList.contains("empty-state")) {
-        alert("Please generate your CV preview before downloading.");
-        return;
-      }
+    <!-- PREVIEW -->
+    <div id="cv-result" class="preview-box empty">
+      Your CV preview will appear here.
+    </div>
 
-      const htmlContent = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>HireNest CV</title><style>
-          body {
-            margin: 0;
-            padding: 40px;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            color: #20242f;
-            background: #fff;
-          }
+  </div>
 
-          .cv-export {
-            max-width: 760px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 0;
-            border: none;
-            box-shadow: none;
-            page-break-inside: avoid;
-            break-inside: avoid;
-          }
+</div>
 
-          .cv-header h1 {
-            margin: 0 0 10px;
-            font-size: 30px;
-          }
+<script>
+function goToResume(){
+  window.location.assign("index.html");
+}
 
-          .cv-header .subtitle {
-            margin: 0 0 20px;
-            color: #47526a;
-            font-size: 0.98rem;
-          }
+function goToJobs(){
+  window.location.assign("jobs.html");
+}
 
-          .cv-section {
-            margin-bottom: 18px;
-            page-break-inside: avoid;
-            break-inside: avoid;
-          }
+function goToCoverLetter(){
+  window.location.assign("coverletter.html");
+}
+function generateCV(){
 
-          .cv-section h3 {
-            margin: 0 0 10px;
-            font-size: 0.8rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: #2f56ff;
-          }
+  let name = document.getElementById("name").value.trim();
+  let role = document.getElementById("role").value.trim();
 
-          .cv-section p {
-            margin: 0;
-            color: #47526a;
-            white-space: pre-wrap;
-            line-height: 1.6;
-            font-size: 0.95rem;
-          }
-        </style></head><body>${result.innerHTML}</body></html>`;
+  if(name === "" || role === ""){
+    alert("Please fill required fields (Name & Role)");
+    return;
+  }
 
-      const blob = new Blob([htmlContent], { type: "text/html" });
-      const filename = `${(document.getElementById("name").value.trim() || 'HireNest').replace(/\s+/g, '_')}_CV.html`;
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = filename;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(link.href);
-    }
-    function navigateTo(url) {
-      document.body.classList.add('page-transitioning');
-      window.setTimeout(() => { window.location.href = url; }, 260);
-    }
-    function goToResume() { navigateTo("index.html"); }
-    function goToJobs() { navigateTo("jobs.html"); }
-    function goToCoverLetter() { navigateTo("coverletter.html"); }
-    function goToCV() { navigateTo("cv.html"); }
-    document.addEventListener('DOMContentLoaded', () => {
-      document.body.classList.add('page-loaded');
-    });
-  </script>
+  let summary = document.getElementById("summary").value;
+  let education = document.getElementById("education").value;
+  let experience = document.getElementById("experience").value;
+  let skills = document.getElementById("skills").value;
+
+  let html = `
+    <div class="cv">
+      <h1>${name}</h1>
+      <div class="role">${role}</div>
+
+      ${summary ? `<div class="cv-section"><h3>Summary</h3><p>${summary}</p></div>` : ""}
+      ${education ? `<div class="cv-section"><h3>Education</h3><p>${education}</p></div>` : ""}
+      ${experience ? `<div class="cv-section"><h3>Experience</h3><p>${experience}</p></div>` : ""}
+      ${skills ? `<div class="cv-section"><h3>Skills</h3><p>${skills}</p></div>` : ""}
+    </div>
+  `;
+
+  let box = document.getElementById("cv-result");
+  box.classList.remove("empty");
+  box.innerHTML = html;
+}
+</script>
 </body>
 </html>
